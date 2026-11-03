@@ -47,7 +47,7 @@ Controls at 100 pings / 20 seeds:
 - Fixed cyclic sweep performs particularly badly because action identity is locked to temporal phase during training, while test actions are random. Its failure is *not* evidence of active intelligence.
 - Homeo strongly lowers sensor-energy deviation but harms held-out prediction in this configuration. Staying stable and learning a world are different objectives.
 
-These are repeated measurements from **one synthetic medium family**, not independent biological networks. Training policies can change hidden states and synapses, so end-of-training snapshots differ. Their test trajectories consequently differ too; this is not a controlled proof that one policy has a better representation in the same exact environment. A reference-world test and additional architectures are future work.
+These are repeated measurements from **one synthetic medium family**, not independent biological networks. For the table above, training policies can change hidden states and synapses, so their test states differ. **We also ran a shared-world control below**: the same reference medium and the same held-out test actions for every policy. It confirmed the short-budget result without proving generality across network architectures.
 
 ## Run
 
@@ -60,13 +60,15 @@ python brahsol.py --seeds 20 --train 100 --test 120 --plasticity on --sensors fo
 python brahsol.py --seeds 8 --train 650 --test 220 --plasticity on --sensors four --out results_long
 python brahsol.py --seeds 20 --train 100 --test 120 --plasticity on --sensors four --shuffled-returns --out results_shuffled
 python brahsol.py --seeds 5 --train 750 --test 240 --plasticity both --sensors both
+python shared_probe.py --seeds 20 --train 100 --test 120
+python shared_probe.py --seeds 8 --train 650 --test 220
 ```
 
 Outputs: `runs.csv` (per seed) and `summary.json` (grouped mean metrics). `relative_skill = 1 - model_RMSE / persistence_RMSE`; action entropy is normalized to [0,1]; synaptic drift is relative Frobenius distance from the initial recurrent matrix. Homeostasis error is the mean squared deviation from the target squared sensor amplitude. Do not compare raw RMSE or homeostasis scores between the four-channel and summed-channel conditions without accounting for their different scales.
 
 ## What to falsify next
 
-1. Evaluate every predictor on the **same** held-out reference medium and on separate fixed contextual states, rather than only each policy's own end state.
+1. Extend the **common-world** control to separately fixed contextual states, new mediums, and held-out network architectures; the initial same-world test is in `shared_probe.py`.
 2. Vary observation budgets (1, 2, 4 ports), propagation delays, noise, and hidden network connectivity; include genuine unseen stimulation combinations.
 3. Add controllable **probe locations**. Ask whether probe selection reduces observational equivalence / common nullspaces rather than simply improving regression.
 4. Separate *neuron adaptation* from *synaptic plasticity* and quantify their individual effects.
@@ -77,3 +79,20 @@ The target is not to obtain another rhythmic trace. It is to show a reduction in
 ## Scope
 
 This repository explores active sensing, online system identification, and feedback. Those are established research areas. The implementation is a self-contained toy designed to make sharp controls cheap. It does not establish a novel neuroscience mechanism or a theorem about neurons.
+## Stronger control: identical evaluation world
+
+`shared_probe.py` trains separate controllers on their own ping histories, then evaluates their frozen predictors on **exactly the same reference medium, its hidden state, and its independent random held-out actions** for each seed. This eliminates the evaluation-world confound (not the differences in training data).
+
+| Policy | Shared-world RMSE: 20 seeds / 100 pings | Shared-world RMSE: 8 seeds / 650 pings |
+|---|---:|---:|
+| active | **0.02571** | **0.01631** |
+| random | 0.03146 | 0.01654 |
+| balanced | 0.03394 | 0.01831 |
+| homeo | 0.05699 | 0.05183 |
+| sweep | 0.09314 | 0.09546 |
+
+For 100 pings, active beat random and balanced in **20/20 paired seeds** under shared-world evaluation. At 650 pings it only narrowly beat random (6/8 seeds). The common-world persistence baseline was about 0.1056 at 100 pings.
+
+This supports a **sample-efficiency effect in the specified artificial environment**, not neural-level system identification or a biological learning mechanism. The active selector's `log(1+xᵀPx)` bonus chiefly encourages informative coverage; it is not an optimal experimental-design solution.
+
+Most revealing negative control: disabling the medium's Hebbian synaptic plasticity did not change the short-budget active advantage (RMSE 0.0257 versus 0.0258 with plasticity). The phenomenon so far depends on interaction, state and sampling, **not demonstrably on synaptic learning**. More heterogeneous and changing media are needed to test that conjecture.
