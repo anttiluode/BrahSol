@@ -96,3 +96,31 @@ For 100 pings, active beat random and balanced in **20/20 paired seeds** under s
 This supports a **sample-efficiency effect in the specified artificial environment**, not neural-level system identification or a biological learning mechanism. The active selector's `log(1+xᵀPx)` bonus chiefly encourages informative coverage; it is not an optimal experimental-design solution.
 
 Most revealing negative control: disabling the medium's Hebbian synaptic plasticity did not change the short-budget active advantage (RMSE 0.0257 versus 0.0258 with plasticity). The phenomenon so far depends on interaction, state and sampling, **not demonstrably on synaptic learning**. More heterogeneous and changing media are needed to test that conjecture.
+
+
+---
+
+## V2: Can a learned ping-response model recover after the medium changes?
+
+[**Full v2 results and controls**](RESULTS_V2.md) · [v2 implementation](brahsol_v2.py) · [v2 tests](tests/test_v2.py)
+
+V2 deliberately changes synapses at tick 170, including which neural neighborhood receives each stimulation port. A controller now has to revise what a given ping means. It compares five stimulation policies with and without exponential forgetting and repeats everything with and without hidden Hebbian plasticity and without the engineered shock.
+
+**Main receipt (12 seeds; synaptic learning enabled; shock at tick 170; late post-change):**
+
+| Active + forgetting | Random + forgetting | Active without forgetting |
+|---:|---:|---:|
+| **0.0483 RMSE** | 0.0561 RMSE | 0.1008 RMSE |
+
+Active with forgetting wins against random with forgetting on **11/12 paired seeds** in the late recovery window, but its benefit right after the shock is minimal. **Forgetting, not the active action selector, supplies the main recovery effect.** Almost the same behavior occurs with hidden Hebbian plasticity disabled, so this result **does not establish that a controller learns upstream neural plasticity**.
+
+When no engineered shock occurs, not forgetting works better. This is a useful negative control: a flexible controller has to choose *when* to forget. Explicit changepoint detection remains future work.
+
+Run from the repository root:
+
+```bash
+python -m unittest discover -s tests -v
+python brahsol_v2.py --seeds 12 --steps 440 --change 170 --eval-every 12 --plasticity both --shock both --out results_v2
+```
+
+This leaves the v1 experiment intact. No biological apical-tuft mechanism is being claimed.
