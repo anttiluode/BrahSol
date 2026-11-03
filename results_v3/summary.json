@@ -1,0 +1,349 @@
+{
+  "parameters": {
+    "seeds": 400,
+    "sigma": 0.012,
+    "steps": 5,
+    "train_seeds": "5000..5099",
+    "test_seeds": "20000.."
+  },
+  "read_wipe": [
+    {
+      "model": "linear",
+      "previous_reads": 0,
+      "final_tick": 100,
+      "final_sensor_contrast": 0.533328283569541,
+      "contrast_relative": 1.0,
+      "hidden_state_distance": 3.6472969755841826,
+      "hidden_distance_relative": 1.0,
+      "read_noise_sigma": 0.2666641417847705,
+      "read_accuracy": 0.7143333333333334
+    },
+    {
+      "model": "linear",
+      "previous_reads": 1,
+      "final_tick": 100,
+      "final_sensor_contrast": 0.5333282835695412,
+      "contrast_relative": 1.0000000000000004,
+      "hidden_state_distance": 3.647296975584184,
+      "hidden_distance_relative": 1.0000000000000004,
+      "read_noise_sigma": 0.2666641417847705,
+      "read_accuracy": 0.71125
+    },
+    {
+      "model": "linear",
+      "previous_reads": 3,
+      "final_tick": 100,
+      "final_sensor_contrast": 0.5333282835695405,
+      "contrast_relative": 0.9999999999999991,
+      "hidden_state_distance": 3.6472969755841804,
+      "hidden_distance_relative": 0.9999999999999994,
+      "read_noise_sigma": 0.2666641417847705,
+      "read_accuracy": 0.7155833333333333
+    },
+    {
+      "model": "linear",
+      "previous_reads": 5,
+      "final_tick": 100,
+      "final_sensor_contrast": 0.5333282835695417,
+      "contrast_relative": 1.0000000000000013,
+      "hidden_state_distance": 3.6472969755841884,
+      "hidden_distance_relative": 1.0000000000000016,
+      "read_noise_sigma": 0.2666641417847705,
+      "read_accuracy": 0.7075833333333333
+    },
+    {
+      "model": "linear",
+      "previous_reads": 8,
+      "final_tick": 100,
+      "final_sensor_contrast": 0.5333282835695408,
+      "contrast_relative": 0.9999999999999996,
+      "hidden_state_distance": 3.647296975584183,
+      "hidden_distance_relative": 1.0000000000000002,
+      "read_noise_sigma": 0.2666641417847705,
+      "read_accuracy": 0.7125833333333333
+    },
+    {
+      "model": "linear",
+      "previous_reads": 12,
+      "final_tick": 100,
+      "final_sensor_contrast": 0.5333282835695399,
+      "contrast_relative": 0.9999999999999979,
+      "hidden_state_distance": 3.6472969755841746,
+      "hidden_distance_relative": 0.9999999999999978,
+      "read_noise_sigma": 0.2666641417847705,
+      "read_accuracy": 0.71025
+    },
+    {
+      "model": "TM",
+      "previous_reads": 0,
+      "final_tick": 100,
+      "final_sensor_contrast": 0.02639951279774294,
+      "contrast_relative": 1.0,
+      "hidden_state_distance": 0.2726097105287343,
+      "hidden_distance_relative": 1.0,
+      "read_noise_sigma": 0.01319975639887147,
+      "read_accuracy": 0.7109166666666666
+    },
+    {
+      "model": "TM",
+      "previous_reads": 1,
+      "final_tick": 100,
+      "final_sensor_contrast": 0.027098575493957333,
+      "contrast_relative": 1.0264801362650207,
+      "hidden_state_distance": 0.2484839050892302,
+      "hidden_distance_relative": 0.9115005646984791,
+      "read_noise_sigma": 0.01319975639887147,
+      "read_accuracy": 0.7229166666666667
+    },
+    {
+      "model": "TM",
+      "previous_reads": 3,
+      "final_tick": 100,
+      "final_sensor_contrast": 0.019516620054709097,
+      "contrast_relative": 0.7392795542945662,
+      "hidden_state_distance": 0.15329721006448238,
+      "hidden_distance_relative": 0.5623321699258551,
+      "read_noise_sigma": 0.01319975639887147,
+      "read_accuracy": 0.534
+    },
+    {
+      "model": "TM",
+      "previous_reads": 5,
+      "final_tick": 100,
+      "final_sensor_contrast": 0.009211024955282532,
+      "contrast_relative": 0.34890889941234215,
+      "hidden_state_distance": 0.06819974289292433,
+      "hidden_distance_relative": 0.2501735641061684,
+      "read_noise_sigma": 0.01319975639887147,
+      "read_accuracy": 0.2891666666666667
+    },
+    {
+      "model": "TM",
+      "previous_reads": 8,
+      "final_tick": 100,
+      "final_sensor_contrast": 0.001222544036055706,
+      "contrast_relative": 0.04630934083602592,
+      "hidden_state_distance": 0.014120023441702132,
+      "hidden_distance_relative": 0.051795746432935004,
+      "read_noise_sigma": 0.01319975639887147,
+      "read_accuracy": 0.13925
+    },
+    {
+      "model": "TM",
+      "previous_reads": 12,
+      "final_tick": 100,
+      "final_sensor_contrast": 0.0004214526750988684,
+      "contrast_relative": 0.015964411098332885,
+      "hidden_state_distance": 0.00422911790869548,
+      "hidden_distance_relative": 0.015513452915866371,
+      "read_noise_sigma": 0.01319975639887147,
+      "read_accuracy": 0.12883333333333333
+    }
+  ],
+  "addressing": [
+    {
+      "policy": "active",
+      "n": 400,
+      "correct": {
+        "mean": 0.99,
+        "sd": 0.09962335082737976
+      },
+      "net_reward": {
+        "mean": 0.865,
+        "sd": 0.09962335082737976
+      }
+    },
+    {
+      "policy": "fixed",
+      "n": 400,
+      "correct": {
+        "mean": 0.9475,
+        "sd": 0.22331238445870302
+      },
+      "net_reward": {
+        "mean": 0.8225,
+        "sd": 0.22331238445870302
+      }
+    },
+    {
+      "policy": "global",
+      "n": 400,
+      "correct": {
+        "mean": 0.1425,
+        "sd": 0.35000000000000003
+      },
+      "net_reward": {
+        "mean": 0.0175,
+        "sd": 0.35000000000000003
+      }
+    },
+    {
+      "policy": "random",
+      "n": 400,
+      "correct": {
+        "mean": 0.92,
+        "sd": 0.271632952995181
+      },
+      "net_reward": {
+        "mean": 0.795,
+        "sd": 0.271632952995181
+      }
+    }
+  ],
+  "efference": [
+    {
+      "history": "0",
+      "n": 400,
+      "correct": {
+        "mean": 0.37,
+        "sd": 0.4834089475033698
+      },
+      "true_label_probability": {
+        "mean": 0.3604577959240217,
+        "sd": 0.4283193936896717
+      }
+    },
+    {
+      "history": "1",
+      "n": 400,
+      "correct": {
+        "mean": 0.535,
+        "sd": 0.499398133997917
+      },
+      "true_label_probability": {
+        "mean": 0.5261121783245298,
+        "sd": 0.4487215808657097
+      }
+    },
+    {
+      "history": "2",
+      "n": 400,
+      "correct": {
+        "mean": 0.595,
+        "sd": 0.49150681314547523
+      },
+      "true_label_probability": {
+        "mean": 0.5779560177687585,
+        "sd": 0.44632860874801555
+      }
+    },
+    {
+      "history": "all",
+      "n": 400,
+      "correct": {
+        "mean": 0.92,
+        "sd": 0.271632952995181
+      },
+      "true_label_probability": {
+        "mean": 0.9085996272018682,
+        "sd": 0.19901538404143726
+      }
+    }
+  ],
+  "stop_rule_training_scores": {
+    "active": {
+      "0.5": 0.8002499999999999,
+      "0.65": 0.8275,
+      "0.8": 0.892,
+      "0.9": 0.8987500000000002,
+      "0.95": 0.8962500000000001,
+      "1.0": 0.875
+    },
+    "fixed": {
+      "0.5": 0.66275,
+      "0.65": 0.7070000000000001,
+      "0.8": 0.7902499999999999,
+      "0.9": 0.8107500000000002,
+      "0.95": 0.8075,
+      "1.0": 0.795
+    },
+    "random": {
+      "0.5": 0.7300000000000001,
+      "0.65": 0.7650000000000001,
+      "0.8": 0.7822500000000001,
+      "0.9": 0.8077500000000001,
+      "0.95": 0.8147500000000001,
+      "1.0": 0.785
+    },
+    "global": {
+      "0.5": 0.015,
+      "0.65": 0.015,
+      "0.8": 0.015,
+      "0.9": 0.015,
+      "0.95": 0.015,
+      "1.0": 0.015
+    }
+  },
+  "stop_thresholds": {
+    "active": 0.9,
+    "fixed": 0.9,
+    "random": 0.95,
+    "global": 0.5
+  },
+  "stopping": [
+    {
+      "policy": "active",
+      "n": 400,
+      "correct": {
+        "mean": 0.985,
+        "sd": 0.12170468386708859
+      },
+      "reads": {
+        "mean": 3.6075,
+        "sd": 0.7278517503077567
+      },
+      "reward": {
+        "mean": 0.8948125000000001,
+        "sd": 0.12425074633039089
+      }
+    },
+    {
+      "policy": "fixed",
+      "n": 400,
+      "correct": {
+        "mean": 0.935,
+        "sd": 0.24683459703967625
+      },
+      "reads": {
+        "mean": 3.76,
+        "sd": 0.8510055971119047
+      },
+      "reward": {
+        "mean": 0.8410000000000001,
+        "sd": 0.25232055833879447
+      }
+    },
+    {
+      "policy": "global",
+      "n": 400,
+      "correct": {
+        "mean": 0.1425,
+        "sd": 0.35000000000000003
+      },
+      "reads": {
+        "mean": 5.0,
+        "sd": 0.0
+      },
+      "reward": {
+        "mean": 0.0175,
+        "sd": 0.35000000000000003
+      }
+    },
+    {
+      "policy": "random",
+      "n": 400,
+      "correct": {
+        "mean": 0.9175,
+        "sd": 0.27546952398880087
+      },
+      "reads": {
+        "mean": 4.2025,
+        "sd": 0.8415844645830678
+      },
+      "reward": {
+        "mean": 0.8124375,
+        "sd": 0.2806187150777363
+      }
+    }
+  ]
+}
