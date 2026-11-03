@@ -124,3 +124,29 @@ python brahsol_v2.py --seeds 12 --steps 440 --change 170 --eval-every 12 --plast
 ```
 
 This leaves the v1 experiment intact. No biological apical-tuft mechanism is being claimed.
+
+
+---
+
+## V3: Destructive reading, efference copy, and addresses through one scalar return
+
+[**Full v3 results**](RESULTS_V3.md) · [confirmation plan](PREREG_V3.md) · [source](brahsol_v3.py) · [11 tests](tests/test_v3.py) · [machine-readable summary](results_v3/summary.json)
+
+Building on BrahClaude's temporal-Sihti route experiments, v3 asks what happens when reading a hidden synaptic state **changes that state**. It uses eight TM-like facilitation/depression routes with one summed sensory return and explicit Bayesian hypotheses for the eight possible written routes. The adaptive query strategy is given the **correct toy synapse model**; it is not a biological neural learner.
+
+- **Destructive read:** after 12 earlier global pings, TM-like route-class contrast falls to **1.6%** of a no-extra-read control at the same final observation time. The linear Sihti comparator retains 100%. TM hidden-state distance also falls to 1.6%, separating actual state convergence from mere sensor saturation.
+- **Addressability:** with 5 reads, 400 fresh confirmation seeds and a single summed observation, adaptive selective probes identify the written route **99.0%**, fixed three-bit code 94.75%, random four-route subsets 92.0%, and global broadcast 14.25% (12.5% chance). Adaptive, fixed and random activate exactly four routes per read.
+- **Own-ping history:** decoding the *same random-subset recordings* with a complete action history gives 92.0% correct; truncating all earlier actions in that **specific predictor** gives 37.0%. This is a model ablation, not a proof an optimal history-blind estimator cannot recover the state.
+- **Learned stopping:** an active policy with a stop threshold chosen from reward on separate training seeds makes **3.61 reads** on average, achieves 98.5% accuracy and scores 0.8948 net reward (correctness minus 0.025 per read). Always reading five times scores 0.8650.
+
+**Interpretation:** selective addressing, back-action modeling and knowing when to remain silent can be useful in this engineered model. The physics and hypothesis templates are supplied to the controller; only the stop threshold is trained. This does **not** yet show a neuron learning its unknown connections, the synapse model, or an apical-tuft mechanism.
+
+Run the 400-seed confirmation locally:
+
+```bash
+python -m pip install -r requirements.txt
+python -m unittest discover -s tests -v
+python brahsol_v3.py --seeds 400 --steps 5 --sigma 0.012 --out results_v3
+```
+
+The design was tuned in an exploratory pilot; `PREREG_V3.md` freezes the final confirmation on separate seeds 20000–20399 before those final evaluations.
